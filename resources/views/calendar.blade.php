@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="description"></p>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -53,7 +53,6 @@
 
     <script>
         $(document).ready(function() {
-
             var selectedEvent;
             // Delete event
             $("#deleteEvent").click(function() {
@@ -79,16 +78,13 @@
                     $("#eventDetailModal").modal("hide");
                 }
             });
-
             // CSRF token
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             var events = {!! json_encode($evenements) !!};
-
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -105,17 +101,13 @@
                     $('#EventModal').modal('show');
                     // Set modal content dynamically
                     $('#EventModal .modal-title').text(event.title);
-                    $('#EventModal .description').text(event.description);
-                    $('#EventModal .modal-body').html('<p>Start: ' + moment(event.start).format(
-                            'YYYY-MM-DD HH:mm') + '</p>' +
+                    $('#EventModal .modal-body').html('<p>'+event.description+'</p>' +
+                        '<p>Start: ' + moment(event.start).format('YYYY-MM-DD HH:mm') + '</p>' +
                         '<p>End: ' + moment(event.end).format('YYYY-MM-DD HH:mm') + '</p>');
                 }
             });
-
-
         });
-    </script>
-
+        </script>
 
 
 

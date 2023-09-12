@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,8 @@ Route::get('/admin/dashboard/create_event', [AdminController::class, "event_crea
 Route::post('/admin/dashboard/create_event/store', [AdminController::class, "event_store"])->name("create_event.store");
 //delete event
 Route::delete('/calendar/event/delete/{id}', [CalendarController::class, 'destroy'])->name('calendar.delete');
+
+//coach route
+Route::get('/coach/dashboard', [CoachController::class, "index"])->name("coach.index");
+Route::get('/coach/dashboard/create_event', [CoachController::class, "event_create_form"])->name("create_event.index");
+Route::post('/coach/dashboard/create_event/store', [CoachController::class, "event_store"])->name("create_event.store");
